@@ -1,62 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Vivi Brownis</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="">
-    <meta name="author" content="Phoenixcoded" />
-    <link rel="icon" href="<?= base_url(); ?>assets/assetsadmin/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/assetsadmin/css/style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DigiTravel</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="<?= base_url('assets/');?>plugins/summernote/summernote-bs4.min.css">
 </head>
-<body class="" style="background-color:white;">
-<style>
-	.pcoded-navbar.menu-light .pcoded-inner-navbar > li.active > a, .pcoded-navbar.menu-light .pcoded-inner-navbar > li.pcoded-trigger > a {
-  background: #934415;
-  color: #fff;
-}
-</style>
-	<div class="loader-bg">
-		<div class="loader-track">
-			<div class="loader-fill"></div>
-		</div>
-	</div>
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue" style="background-color:#db5c1e">
-	<div class="m-header">
-		<a href="#!" class="b-brand"><h4 style="color: white">Vivi Brownis</h4></a>
-		<a href="#!" class="mob-toggler"><i class="feather icon-more-vertical"></i></a>
-	</div>
-	<div class="collapse navbar-collapse">
-	</div>
-</header>
-<div class="row container" style="justify-content: flex-start;">
-	<a href="<?= base_url('Admin/datauser'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Data User Pengguna</span></a>
-	<!-- <a href="<?= base_url('Admin/dataregistrasi'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Data Customer Registrasi</span></a> -->
-	<a href="<?= base_url('Admin/dataproduk'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Data Nama Brownis</span></a>
-	<a href="<?= base_url('Admin/datastock'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Data Stock</span></a>
-	<a href="<?= base_url('Admin/postingproduk'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Posting Produk</span></a>
-	<a href="<?= base_url('Admin/datapesanan'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Data Pesanan</span></a>
-	<a href="<?= base_url('Admin/datalaporan'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Laporan Penjualan</span></a>
-	<a href="<?= base_url('Admin/logout'); ?>" class="nav-link " style="color:black;padding-left: 30px;"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Logout</span></a>
-</div>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
-<!-- Add the following CSS code -->
-<style>
-	@media (max-width: 768px) {
-		.navbar-nav {
-			flex-direction: column;
-		}
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="<?= base_url('assets/');?>dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
 
-		.nav-item {
-			margin-bottom: 10px;
-		}
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
 
-		.nav-link {
-			padding-left: 0;
-		}
-	}
-</style>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="<?= base_url('assets/');?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">DigiTravel</span>
+    </a>
 
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="<?= base_url('assets/');?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Administrator</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="<?= base_url('dashboard');?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('user');?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Data User
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('customer');?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Data Customer
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('jenis-produk');?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Data Jenis Produk
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('produk');?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Data Produk
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('pesanan');?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Data Pesanan
+                <span class="right badge badge-danger">10</span>
+              </p>
+            </a>
+          </li>
+          
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0"><?= $judul;?></h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><?= $judul;?></li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->

@@ -49,21 +49,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] 	= 'Customer';
+$route['default_controller'] 	= 'Home';
 $route['404_override'] 			= '';
 $route['translate_uri_dashes'] 	= FALSE;
 
 
+$route['jenis-produk'] 			    = 'Admin/jenisproduk';
+$route['simpanjenisproduk'] 	    = 'Admin/simpanjenisproduk';
+$route['simpanproduk'] 	            = 'Admin/simpanproduk';
+$route['produk'] 				    = 'Admin/produk';
+$route['pesanan'] 				    = 'Admin/pesanan';
+$route['pesanan'] 				    = 'Admin/pesanan';
+$route['user'] 				        = 'Admin/user';
+$route['customer'] 				        = 'Admin/customer';
+$route['dashboard'] 				        = 'Admin';
 
-$route['userpengguna'] 			= 'Datauserpengguna';
-$route['profil'] 			    = 'Register/Profil';
-$route['home'] 				    = 'Customer/index';
-$route['menu'] 				    = 'Customer/Menu';
-$route['tentang'] 				= 'Customer/Tentang';
-$route['order'] 				= 'Customer/Order';
-$route['dashboard'] 			= 'Dashboard';
-$route['kontakperson'] 			= 'Customer/kontakperson';
-$route['Pesanan'] 				= 'Customer/pesanan';
-$route['Purchasing'] 			= 'Purchasing';
-$route['Stocks'] 				= 'Stocks';
-$route['cekpesanan'] 			= 'Customer/cekpesanan';

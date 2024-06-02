@@ -3,210 +3,86 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Madmin extends CI_Model {
 
-	function getdataregis()
+	function getjenisproduk()
 	{
-		$query=$this->db->get("tblregistrasionline");
+		$query=$this->db->get("tbl_jenis_produk");
 		return $query->result();
 	}
 
-	function getdatatentang()
+	function simpanjenisproduk($data)
 	{
-		$query=$this->db->get("tbltentang");
-		return $query->result();
+        $this->db->insert('tbl_jenis_produk',$data);
+        return true;
 	}
 
-	function getdatakontak()
+	function simpanproduk($data)
 	{
-		$query=$this->db->get("tblkontak");
-		return $query->result();
+        $this->db->insert('tbl_produk',$data);
+        return true;
 	}
 
-	function getposting()
-	{
-		$this->db->select('a.*, b.namaproduk');
-		$this->db->join('tblproduk b', 'a.idproduk = b.idproduk', 'inner');
-		$query=$this->db->get("tblposting a");
-		return $query->result();
+	function updatejenisproduk($data){
+		$this->db->where('id_jenis_produk', $data['id_jenis_produk']);
+		$this->db->set('jenis_produk', $data['jenis_produk']);
+		$this->db->update('tbl_jenis_produk', $data);
+        return true;
 	}
 
-	function getpostingan($id)
+	function deletejenisproduk($id)
 	{
-		$this->db->select('a.*, b.namaproduk');
-		$this->db->join('tblproduk b', 'a.idproduk = b.idproduk', 'inner');
-		$this->db->where('a.idposting', $id);
-		$query=$this->db->get("tblposting a");
-		return $query->result();
-	}
-
-	function getdatastock()
-	{
-		$this->db->select('a.*, b.namaproduk');
-		$this->db->join('tblproduk b', 'a.idproduk = b.idproduk', 'inner');
-		$query=$this->db->get("tblstock a");
-		return $query->result();
-	}
-
-	function getstockid($id)
-	{
-		$this->db->select('a.*, b.namaproduk');
-		$this->db->join('tblproduk b', 'a.idproduk = b.idproduk', 'inner');
-		$this->db->where('a.idstock', $id);
-		$query=$this->db->get("tblstock a");
-		return $query->result();
-	}
-
-	function hapusstock($id)
-	{
-		$query="DELETE from tblstock WHERE idstock = '".$id."' ";
+		$query="DELETE from tbl_jenis_produk WHERE id_jenis_produk = '".$id."' ";
 		$this->db->query($query);
+	}
+
+	function getuser()
+	{
+		$this->db->where('level','1');
+		$query=$this->db->get("tbl_user");
+		return $query->result();
+	}
+	function simpanuser($data)
+	{
+        $this->db->insert('tbl_user',$data);
+        return true;
+	}
+
+	function updateuser($data){
+		$this->db->where('id_user', $data['A']);
+		$this->db->set('nama_user', $data['B']);
+		$this->db->set('username', $data['C']);
+		$this->db->set('password', $data['D']);
+		$this->db->set('level', $data['E']);
+		$this->db->update('tbl_user', $data);
+        return true;
+	}
+
+	function deleteuser($id)
+	{
+		$query="DELETE from tbl_user WHERE id_user = '".$id."' ";
+		$this->db->query($query);
+	}
+
+	function getcustomer()
+	{
+		$this->db->where('level','2');
+		$query=$this->db->get("tbl_user");
+		return $query->result();
 	}
 
 	function getproduk()
 	{
-		$query=$this->db->get("tblproduk");
+		$query=$this->db->query("SELECT a.*,b.* FROM tbl_produk a left join tbl_jenis_produk b on a.id_jenis_produk = b.id_jenis_produk");
 		return $query->result();
 	}
 
-	function insert($data){
-		$this->db->insert('tblproduk',$data);
-	}
-
-
-	function saverecordstentang($data)
-	{
-        $this->db->insert('tbltentang',$data);
+	function updateproduk($data){
+		$this->db->where('id_produk', $data['id_produk']);
+		$this->db->set('id_jenis_produk', $data['id_jenis_produk']);
+		$this->db->set('nama_produk', $data['nama_produk']);
+		$this->db->set('deskripsi', $data['deskripsi']);
+		$this->db->update('tbl_produk', $data);
         return true;
 	}
-
-	function saverecordskontak($data)
-	{
-		// var_dump($data);
-        $this->db->insert('tblkontak',$data);
-        return true;
-	}
-
-	function simpannoref($idnoref,$noref)
-	{
-		$query="UPDATE tblpesanan SET notransaksipembayaran='$noref' WHERE idpesanan='$idnoref'";
-		$this->db->query($query);
-	}
-
-
-	function getdataedittentang($id)
-	{
-		$this->db->where('id', $id);
-		$query=$this->db->get("tbltentang");
-		return $query->result();
-	}
-
-	function lihatprodukid($id)
-	{
-		$this->db->where('idproduk', $id);
-		$query=$this->db->get("tblproduk");
-		return $query->result();
-	}
-
-
-
-
-	function getdataeditkontak($id)
-	{
-		$this->db->where('id', $id);
-		$query=$this->db->get("tblkontak");
-		return $query->result();
-	}
-
-
-	function updaterecordstentang($id,$deskripsi)
-	{
-		$query=" UPDATE tbltentang SET deskripsi = '".$deskripsi."' WHERE id = '".$id."' ";
-		$this->db->query($query);
-	}
-
-	function updaterecordskontak($id,$alamatkantor,$kontakperson)
-	{
-		$query=" UPDATE tblkontak SET alamatkantor = '".$alamatkantor."',kontakperson = '".$kontakperson."' WHERE id = '".$id."' ";
-		$this->db->query($query);
-	}
-
-
-	function deleterecordstentang($id)
-	{
-		$query="DELETE from tbltentang WHERE id = '".$id."' ";
-		$this->db->query($query);
-	}
-
-	function deleterecordskontak($id)
-	{
-		$query="DELETE from tblkontak WHERE id = '".$id."' ";
-		$this->db->query($query);
-	}
-
-	function deleterecordsproduk($id)
-	{
-		$query="DELETE from tblproduk WHERE idproduk = '".$id."' ";
-		$this->db->query($query);
-	}
-
-
-	function update($data){
-		$where = $this->input->post('id',true);
-		$this->db->where('idproduk', $where);
-		$this->db->update('tblproduk', $data);
-	}
-
-	function updatestatus($idpesanan){
-		$query=" UPDATE tblpesanan SET statuspesanan = 'Sedang Di Proses' WHERE idpesanan = '".$idpesanan."' ";
-
-				$this->db->query($query);
-				$this->db->query($query1);
-	}
-
-	function updatestatusdikirim($idpesanan){
-		$query=" UPDATE tblpesanan SET statuspesanan = 'Barang Dikirim' WHERE idpesanan = '".$idpesanan."' ";
-		$this->db->query($query);
-	}
-
-	function updatestatusselesai($idpesanan){
-		$query=" UPDATE tblpesanan SET statuspesanan = 'Pesanan Selesai' WHERE idpesanan = '".$idpesanan."' ";
-		$this->db->query($query);
-	}
-
-	function getpesanan()
-	{
-		$query=$this->db->query("select a.*,b.idproduk,c.idproduk as id_produk ,c.namaproduk,c.gambar from tblpesanan a left join tblposting b on a.idpostingproduk = b.idposting left join tblproduk c on b.idproduk = c.idproduk");
-		return $query->result();
-	}
-
-	function getpesananid($idpesanan)
-	{
-		$q = $this->db->query("select a.*,b.idproduk,c.idproduk as id_produk ,c.namaproduk,c.gambar from tblpesanan a left join tblposting b on a.idpostingproduk = b.idposting left join tblproduk c on b.idproduk = c.idproduk where a.idpesanan = '".$idpesanan."'");
-		return $q->result();
-	}
-
-	function getdetailpesanan($id)
-	{
-		$this->db->where('id', $id);
-		$query=$this->db->get("tblpesanan");
-		return $query->result();
-	}
-
-	function getcicilan($idpesanan){
-		$this->db->where('idpesanan', $idpesanan);
-		$query=$this->db->get("tblcicilancustomer");
-		return $query->result();
-		
-	}
-
-	public function insertex($data) {
-		$res = $this->db->insert_batch('uploadex',$data);
-		if($res){
-		return TRUE;
-		}else{
-		return FALSE;
-		}
-		}
-
 
 }
 
